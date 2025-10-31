@@ -212,6 +212,14 @@
             border-radius: var(--border-radius-soft);
             font-weight: 400;
         }
+        
+        .challenge-list li strong {
+            color: var(--primary-color);
+            font-weight: 700;
+            display: block; 
+            margin-bottom: 5px;
+        }
+        
 
         /* --- 4. Engineering Notebook Section --- */
         .engineering-entry {
@@ -263,7 +271,7 @@
             position: relative;
         }
 
-        /* Entry Options Explored List Styling */
+        /* Entry Options Explored List Styling (Square Bullets) */
         .entry-section ul {
             list-style: none; 
             padding-left: 0;
@@ -335,12 +343,12 @@
             margin-top: 2rem;
         }
         
-        /* Styling for Team Member/Advisor Boxes (Soft Circles/Boxes) */
+        /* Styling for Team Member/Advisor Boxes (Soft Corners) */
         .team-member {
             background: var(--white-color);
             padding: 1.5rem;
             border: 1px solid var(--light-color);
-            border-radius: var(--border-radius-soft); /* Keeping soft corners for boxes */
+            border-radius: var(--border-radius-soft); 
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
             text-align: center;
         }
@@ -483,20 +491,20 @@
             <div class="separator"></div>
             
             <h3>The Challenge: Requirements from Indus Hospital</h3>
-            <p>The **<a href="https://indushospital.com.pk" target="_blank">Indus Hospital & Health Network</a>** is the largest health network in Pakistan, providing absolutely free healthcare to 6 million people annually. As Pakistan is among the top 5 climate change vulnerable nations, devastated by frequent monsoon floods, the hospital desires a **low-cost, safe, and portable ventilator** to support health needs during disasters and in hard-to-reach rural areas. The key requirements were:</p>
+            <p>The <strong><a href="https://indushospital.com.pk" target="_blank">Indus Hospital & Health Network</a></strong> is the largest health network in Pakistan, providing absolutely free healthcare to 6 million people annually. Pakistan is also among the top 5 climate change vulnerable nations, devastated by frequent monsoon floods. To better support the health needs during disasters and hard-to-reach rural areas, Indus hospital desires to create a low-cost ventilator that is safe and portable. The key requirements are:</p>
             
             <ul class="challenge-list">
-                <li>**Portability:** Light weight and small size.</li>
-                <li>**Reliability:** Can operate on **battery backup for at least 2 hours** to deal with unreliable or damaged power infrastructure.</li>
-                <li>**Transport Ready:** Can be used for transporting patients over unpaved or damaged roads.</li>
-                <li>**Safety:** Features for lung pressure monitoring and emergency stop.</li>
-                <li>**Control:** User controls for breath per minute (BPM), Tidal Volume, and Inhale-Exhale (I/E) ratio with specific ranges.</li>
-                <li>**Target User:** Device needs to work only for adults (no infant or child support in V1).</li>
-                <li>**Cost Constraint:** Keep total cost under **$1000** (retail cost is typically over $10,000).</li>
+                <li><strong>Light weight and small size</strong> for portability.</li>
+                <li>Can operate on <strong>battery backup for at least 2 hours</strong> to deal with unreliable or damaged power infrastructure.</li>
+                <li>Can be used for <strong>transporting patients</strong> over unpaved or damaged roads.</li>
+                <li><strong>Safety features</strong> for lung pressure monitoring and emergency stop.</li>
+                <li><strong>User controls</strong> for breath per minute, Tidal Volume, and Inhale-Exhale ratio with specific ranges.</li>
+                <li>In the first version, the device needs to work only for <strong>adults</strong> (no infant or child support).</li>
+                <li>Keep cost under <strong>$1000</strong> (retail cost is over $10,000).</li>
             </ul>
             
             <h3>Our Solution: Building on Open-Source Foundations</h3>
-            <p>To solve this problem, we started with the **<a href="https://emergency-vent.mit.edu/" target="_blank">MIT Emergency Ventilator</a>** open-source project. The E-Vent project was conceived at the height of COVID-19, when a worldwide shortage of ventilators was causing severe challenges. We researched several other open-source projects built on the MIT design and found the **<a href="https://www.monolithicpower.com/en/mps-open-source-ventilator" target="_blank">MPS design</a>** to be a good fit. Our solution learns from both these projects and modifies them in several key ways to meet the requirements for the Auto-AmbuBag.</p>
+            <p>To solve this problem, we started from the <strong><a href="https://emergency-vent.mit.edu/" target="_blank">MIT Emergency Ventilator</a></strong> open-source project. The E-Vent project was conceived at the height of COVID, when worldwide shortage of ventilators was causing severe challenges. We researched several other open-source projects that build on the MIT design and found the **<a href="https://www.monolithicpower.com/en/mps-open-source-ventilator" target="_blank">MPS design</a>** to be a good fit. Our solution learns from both these projects and modifies them in several key ways to meet the requirements for the Auto-AmbuBag.</p>
         </div>
     </section>
 
@@ -505,27 +513,28 @@
             <h2>Our Design Process: A Quick Overview</h2>
             <div class="separator"></div>
             
-            <p>Starting from the requirements, we held a series of meetings with our advisors who suggested various options to explore for hardware and software needs. Given the trail blazed by MIT and MPS prototypes, some decisions were relatively easy to make, leading to rapid initial progress:</p>
+            <p>Starting from the requirements, we held a series of meetings with our Advisors who suggested various options to explore for hardware and software needs. Given the trail blazed by MIT & MPS prototypes, some decisions were relatively easy to make:</p>
             <ul class="flow-list">
                 <li>Using an **Arduino** as the microcontroller for the AutoBVM.</li>
-                <li>Employing a system of **gears for rotational force** to achieve a smaller device and better duty cycle.</li>
-                <li>Utilizing an **encoder on the motor** for granular, closed-loop control of respiration phases, a key learning from the <a href="https://emergency-vent.mit.edu/mechanical/motor-selection/" target="_blank">MIT project</a>.</li>
-                <li>Implementing the standard user interface controls for BPM, Tidal Volume, I/E ratio, and lung pressure.</li>
+                <li>Using a system of **gears to exert rotational force**, resulting in a smaller device (for portability) and better duty cycle (reliability).</li>
+                <li>Utilize **encoder on the motor** to granularly control the speed and range of motion of the respiration phases. This was one of <strong>key learnings</strong> (<a href="https://emergency-vent.mit.edu/mechanical/motor-selection/" target="_blank">MIT project</a>).</li>
+                <li>Implement the same **user interface recommendation** made by the MIT project (user controls for BPM, Tidal Volume, I/E ratio and lung pressure).</li>
             </ul>
 
-            <p>There were, however, unique requirements for the Indus Hospital use case that necessitated innovation and deviation from the original design. As a result, we:</p>
+            <p>By leveraging the existing state-of-the-art, we were able to make rapid progress on many aspects of the design and implementation. There were some requirements unique to the Indus Hospital use case that necessitated innovation and/or deviation from the original design. As a result, we:</p>
             <ul class="flow-list">
-                <li>**Reduced the physical size** significantly by making efficient use of space and finding smaller components (smaller power supply, integrated gears). The Auto-AmbuBag device is significantly smaller than both MIT and MPS devices.</li>
-                <li>Incorporated a **power management and battery charging module** to enable switching over to the battery in case of power outages.</li>
-                <li>Switched to a **12V ecosystem** to enable charging and operating the device from the power outlet of an ambulance during patient transportation.</li>
-                <li>**Conserved power** by using a **9 N-m motor** (lower power than the 15 N-m minimum required for COVID patients) and selecting a **non-touch screen display** with aggressive brightness controls, which also eliminated the need for active cooling.</li>
-                <li>Added an **SpO2 sensor** to monitor oxygen saturation, displaying the measurement on the device screen for the clinician.</li>
+                <li>**Reduced the physical size** by making efficient use of the space within the device. The Auto-AmbuBag device is significantly smaller than both MIT and MPS devices.</li>
+                <li>**Incorporated a power management and battery charging module** to enable switching over the battery in case of power outages.</li>
+                <li>**Switched to a 12V ecosystem** to enable charging and operating the device from the power outlet of an ambulance during patient transportation.</li>
+                <li>**Conserved power** by using a **9 N-m motor** (lower power than the 15 N-m minimum for COVID patients), a **non-touch screen display** with aggressive brightness controls, and removing the need for any active cooling.</li>
+                <li>**Added an SpO2 sensor** that comes with the Auto-AmbuBag to monitor Oxygen saturation, displayed on the screen for the clinician.</li>
             </ul>
+            <p>The modifications above made it possible to take advantage of existing open-source knowledge where possible, while adjusting the design for the unique needs we had to meet.</p>
             
             <div class="engineering-entry">
                 <h4>Entry 1: Power System</h4>
                 <div class="image-container image-float-right">
-                    <img src="images/myimage.jpg" alt="Battery used in the design">
+                    <img src="images/batteryimage.jpg" alt="Lithium-Ion Battery used in the design">
                     <p>Battery used in the design</p>
                 </div>
                 <div class="entry-section">
@@ -535,14 +544,14 @@
                 <div class="entry-section">
                     <strong>Options Explored:</strong>
                     <ul>
-                        <li>A 24V motor was considered for efficiency but rejected as it would require a boost converter, introducing complexity and a potential failure point. We found that **12V motors** could efficiently manage the required load.</li>
-                        <li>We selected a low-power, **2.4-inch LCD display** with aggressive backlight control, reducing its power consumption to approximately **0.05Ah**, which is negligible.</li>
-                        <li>Under typical configuration used by Indus, the device operated the BVM while drawing **less than 1 A of power hourly** (tested locally using latex balloons to simulate lung resistance).</li>
+                        <li>Considered a 24V motor for efficiency, but rejected it as it would require a boost converter from 12V input, introducing complexity. We used **12V motors** which efficiently manage the required load.</li>
+                        <li>Selected a low power, 2.4 inch LCD display with configurable backlight. With aggressive backlight control, we reduced the consumption to approximately **0.05Ah**, which is negligible.</li>
+                        <li>For typical Indus configuration (15 bpm, Tidal vol of 750 & I:E of 2), the device drew **less than 1 A of power hourly**. Local testing used latex balloons to simulate lung resistance.</li>
                     </ul>
                 </div>
                 <div class="entry-section">
                     <strong>Decision & Rationale:</strong>
-                    <p>We picked an off-the-shelf **4-cell and 6Ah Lithium-Ion battery** that is easily procured and replaceable in Pakistan. We can double the total capacity to 12Ah within the same design by adding one more battery, comfortably exceeding the 2-hour battery operation time requirement. For future iterations, we are considering a different battery (8Ah, longer cycle life, half the price) for potential cost and reliability improvements.</p>
+                    <p>We picked an off-the-shelf **4-cell and 6Ah Lithium-Ion battery** that is easily procured and replaceable in Pakistan. We are confident we will comfortably exceed the 2-hour battery operation time. For future iterations, we are considering a different battery (8Ah, 4000+ cycle life, $18) for improved capacity and cost-efficiency.</p>
                 </div>
             </div>
 
@@ -554,20 +563,20 @@
                 </div>
                 <div class="entry-section">
                     <strong>Challenge:</strong> 
-                    <p>To generate **controlled, high torque** to squeeze the AmbuBag while operating in limited power conditions or during transport. This requires a high torque, low revolutions per minute (rpm) motor.</p>
+                    <p>To generate **controlled torque** to squeeze the AmbuBag while operating in limited power conditions, requiring a **high torque, low revolutions per minute (rpm) motor**.</p>
                 </div>
                 <div class="entry-section">
                     <strong>Options Explored:</strong>
                     <ul>
-                        <li>A donated, high-rpm brushless DC motor required a complex **100:1 planetary gear** system, resulting in excessive device size.</li>
-                        <li>We spent over a month trying multiple low-rpm **stepper motors** and drivers (TMC2208, TB6600, BTS7960). The stepper motors consistently **skipped under load**, even with an encoder, and were deemed fundamentally unsuitable by the manufacturer.</li>
-                        <li>A **TorqueNADO MAX (5 N-m)** DC motor lacked the necessary torque at higher BPMs/tidal volumes.</li>
-                        <li>We finally selected a **goBILDA Yellow Jacket DC motor with 9 N-m torque at 84 rpm speed**, which performed perfectly and included built-in encoder support.</li>
+                        <li>Attempted a high-rpm brushless DC motor, but it required a complex **100:1 planetary gear** and additional gearing, making the device too large.</li>
+                        <li>Tested multiple **low-rpm stepper motors** and various drivers (TMC2208, TB6600, BTS7960). The stepper motors consistently **skipped under load** and proved difficult to control, even with an encoder, and were deemed unsuitable.</li>
+                        <li>The TorqueNADO MAX motor (5 N-m torque) lacked the **necessary torque** at higher respiration settings (BPM and tidal volume).</li>
+                        <li>Selected the **goBILDA Yellow Jacket DC motor with 9 N-m torque at 84 rpm speed**, which performed perfectly across all configuration ranges and includes a built-in encoder.</li>
                     </ul>
                 </div>
                 <div class="entry-section">
                     <strong>Decision & Rationale:</strong>
-                    <p>We picked the **goBILDA Yellow Jacket DC brushed motor**. This motor met all our needs: **low rpm, high torque, encoder support for closed-loop operation, and low cost ($55)**. The compatibility of the goBILDA ecosystem provided readily available mounts and drivers, resulting in a stable and reliable component for the system.</p>
+                    <p>We picked the **goBILDA Yellow Jacket DC brushed motor**. This motor met all our needs of **low rpm, high torque, encoder support** for closed-loop operation, and **low cost ($55)**. The goBILDA ecosystem provides easily available mounts and drivers, resulting in a reliable and well-supported core component.</p>
                 </div>
             </div>
             
@@ -584,14 +593,14 @@
                 <div class="entry-section">
                     <strong>Options Explored:</strong>
                     <ul>
-                        <li>**Large Touch Screen:** Rejected due to high cost and **excessive power consumption** for a battery-operated device.</li>
-                        <li>**Multiple Potentiometers:** Rejected due to being imprecise and lacking the necessary digital numerical feedback for clinical use.</li>
-                        <li>**LCD Screen with Rotary Encoder:** This option offered the ideal balance of **cost, low power, and precise digital control** within a simple menu system.</li>
+                        <li>**Large Touch Screen:** Rejected due to high cost and **power-intensive** nature, which conflicted with the battery-operation requirement.</li>
+                        <li>**Multiple Potentiometers:** Rejected because they were imprecise and lacked the required numerical feedback for clinical parameter setting.</li>
+                        <li>**LCD Screen with Rotary Encoder:** This option offered the best balance of **cost-effectiveness, low power consumption, and precise digital control** through a menu system.</li>
                     </ul>
                 </div>
                 <div class="entry-section">
                     <strong>Decision & Rationale:</strong>
-                    <p>We selected a **16x2 LCD screen with a single rotary encoder and push-button**. This interface was the most robust and cost-effective, allowing for a programmed menu where clinicians could **precisely set and confirm** each parameter, meeting the hospital's exact usability and precision requirements.</p>
+                    <p>We selected a **16x2 LCD screen with a single rotary encoder and push-button**. This interface was the most robust and cost-effective, allowing me to program a simple menu where clinicians could **precisely set and confirm** each ventilation parameter, meeting the hospital's exact usability requirements.</p>
                 </div>
             </div>
         </div>
@@ -601,11 +610,11 @@
         <div class="container">
             <h2>Real-World Application & Pilot with Indus Hospital</h2>
             <div class="separator"></div>
-            <h3>Collaboration with <a href="https://indushospital.com.pk" target="_blank">Indus Hospital & Health Network</a></h3>
-            <p>This project has been a deep collaboration with Indus Hospital staff from the start. The design meets all required specifications and has been **approved by the biomedical department at Indus**. Most of the original requirements are successfully implemented and tested. To ready the device for crucial field testing in Pakistan, the following essential work remains to be completed:</p>
+            <h3>Collaboration with Indus Hospital & Health Network</h3>
+            <p>This project has been a deep collaboration with Indus hospital staff from the start. The design meets all required specifications and has been **approved by the biomedical department at Indus**. Most of the original requirements are successfully implemented and tested. To ready the device for field testing at Indus Hospital, the following work remains to be completed:</p>
             
-            <p><strong>Remaining Work: Pressure Sensor Integration</strong></p>
-            <p>We must integrate a pressure sensor to continuously monitor and control the pressure in the patient's airways. While this device will be field tested initially at lower settings, this is a paramount safety feature. We will be using the medical-grade **Honeywell pressure sensor** (<a href="https://www.mouser.com/ProductDetail/Honeywell/HSCMRRV001PD2A3" target="_blank">HSCMRRV001PD2A3</a>) for this task.</p>
+            <p><strong>Pressure Sensor Integration:</strong></p>
+            <p>We must add a pressure sensor to continuously monitor and control the pressure in the patient airways. While this device will be field tested at lower settings, this is an important safety feature we plan to add to the Auto-AmbuBag first. We will be using the medical-grade **Honeywell pressure sensor** (<a href="https://www.mouser.com/ProductDetail/Honeywell/HSCMRRV001PD2A3" target="_blank">HSCMRRV001PD2A3</a>) for this task.</p>
         </div>
     </section>
 
@@ -617,16 +626,16 @@
             <h3>Core Project Team</h3>
             <div class="team-grid">
                 <div class="team-member">
-                    <strong>Batul Siddiqui</strong>
+                    <strong><a href="https://www.linkedin.com/in/batul-siddiqui-19212a378/" target="_blank">Batul Siddiqui</a></strong>
                     <p>Hardware & Software Engineering / Technical Lead</p>
                 </div>
                 <div class="team-member">
-                    <strong>Eshaal Liaqat</strong>
+                    <strong><a href="https://www.linkedin.com/in/eshaal-fatima-152250237/" target="_blank">Eshaal Liaqat</a></strong>
                     <p>3D Design & Fabrication (CAD, 3D Design)</p>
                 </div>
                 <div class="team-member">
                     <strong><a href="https://www.linkedin.com/in/divya-gill-387884274" target="_blank">Divya Gill</a></strong>
-                    <p>Documentation & Technical Writing</p>
+                    <p>Documentation</p>
                 </div>
             </div>
             
@@ -655,7 +664,7 @@
             </div>
             
             <h3>Supporting Organizations</h3>
-            <p>We extend our sincere thanks to the medical team at **<a href="https://indushospital.com.pk" target="_blank">Indus Hospital</a>** for their guidance and to the **<a href="https://www.monolithicpower.com/en/mps-open-source-ventilator" target="_blank">MPS Open Source Project</a>** for their initial inspiration and hardware donation.</p>
+            <p>We extend our sincere thanks to the medical team at <strong><a href="https://indushospital.com.pk" target="_blank">Indus Hospital</a></strong> for their guidance and to the <strong><a href="https://www.monolithicpower.com/en/mps-open-source-ventilator" target="_blank">MPS Open Source Project</a></strong> for their inspiration and hardware donation.</p>
 
         </div>
     </section>
