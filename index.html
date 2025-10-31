@@ -13,7 +13,7 @@
             --light-color: #f4f4f4; /* Very light gray for section background */
             --white-color: #ffffff;
             --font-family: 'Lato', sans-serif;
-            --border-radius-soft: 8px;
+            --border-radius-soft: 12px; /* Increased border radius for softer corners */
         }
 
         /* Base Reset and Typography */
@@ -24,12 +24,12 @@
         }
 
         html {
-            scroll-behavior: smooth; /* For smooth scrolling navigation */
+            scroll-behavior: smooth;
         }
 
         body {
             font-family: var(--font-family);
-            line-height: 1.7; /* Increased line height for better readability (easy on the eyes) */
+            line-height: 1.8; /* Generous line height for easy reading */
             color: var(--dark-color);
             background-color: var(--white-color);
         }
@@ -49,7 +49,7 @@
             max-width: 1200px;
             margin: auto;
             overflow: hidden;
-            padding: 0 20px;
+            padding: 0 25px; /* Slightly more horizontal padding */
         }
 
         h1, h2, h3 {
@@ -74,7 +74,7 @@
         }
 
         p {
-            margin-bottom: 1.2rem;
+            margin-bottom: 1.5rem; /* Adequate vertical spacing */
         }
 
         /* --- 1. Navigation Bar --- */
@@ -92,7 +92,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 1rem 20px;
+            padding: 1rem 25px;
         }
 
         .navbar .logo {
@@ -121,7 +121,7 @@
             color: var(--dark-color);
         }
 
-        /* --- 2. Hero Section (Video and Text Overlay) --- */
+        /* --- 2. Hero Section --- */
         .hero {
             position: relative;
             height: 100vh;
@@ -129,11 +129,10 @@
             align-items: center;
             justify-content: center;
             text-align: center;
-            padding-top: 60px; /* Offset for fixed navbar */
-            overflow: hidden; /* important for clean video crop */
+            padding-top: 60px;
+            overflow: hidden;
         }
         
-        /* Video Container for full background coverage */
         .hero-video-container {
             position: absolute;
             top: 0;
@@ -143,19 +142,17 @@
             z-index: 1;
         }
 
-        /* YouTube iFrame styling for background video effect */
         .hero-video-container iframe {
             position: absolute;
             top: 50%;
             left: 50%;
-            /* Make sure it covers the whole screen */
             width: 100vw; 
             height: 100vh;
             min-width: 100%;
             min-height: 100%;
             transform: translate(-50%, -50%);
             pointer-events: none; 
-            filter: brightness(0.7); /* Darken video for better text contrast */
+            filter: brightness(0.65); /* Darken video for better text contrast */
         }
         
         .hero-overlay {
@@ -167,7 +164,7 @@
             justify-content: center;
             align-items: center;
             color: var(--white-color);
-            padding: 2rem 4rem;
+            padding: 2.5rem 5rem;
             max-width: 90%;
             border-radius: var(--border-radius-soft);
         }
@@ -185,7 +182,7 @@
 
         /* --- General Section Styling --- */
         section {
-            padding: 5rem 0; /* More padding for better spacing */
+            padding: 5rem 0;
             scroll-padding-top: 80px; 
         }
 
@@ -193,22 +190,49 @@
             background-color: var(--light-color);
         }
         
-        /* Project Challenge List */
+        /* Custom Bullet Points (Squares) for Challenge List */
         .challenge-list {
             list-style: none;
             padding-left: 0;
             margin-bottom: 2.5rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); /* 2 columns on desktop */
+            gap: 15px;
         }
 
         .challenge-list li {
             background: var(--white-color);
             padding: 15px 20px;
-            border-left: 5px solid var(--primary-color);
-            margin-bottom: 10px;
+            border: 1px solid var(--primary-color);
             box-shadow: 0 1px 5px rgba(0, 0, 0, 0.08);
             border-radius: var(--border-radius-soft);
+            font-weight: 400;
         }
         
+        /* Engineering Intro List */
+        .intro-list {
+            list-style: none;
+            padding-left: 0;
+            margin-bottom: 2rem;
+        }
+        
+        .intro-list li {
+            position: relative;
+            padding-left: 30px;
+            margin-bottom: 15px;
+        }
+
+        .intro-list li::before {
+            content: '•'; /* Simple round bullet */
+            position: absolute;
+            left: 0;
+            color: var(--primary-color);
+            font-weight: 700;
+            font-size: 1.2rem;
+            line-height: 1.6;
+        }
+
+
         /* --- 4. Engineering Notebook Section --- */
         .engineering-entry {
             background: var(--white-color);
@@ -216,13 +240,14 @@
             margin-bottom: 3rem;
             border-radius: var(--border-radius-soft);
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            overflow: auto; /* To contain floated images */
         }
 
         .engineering-entry h4 {
             font-size: 1.6rem;
             color: var(--primary-color);
             margin-top: 0;
-            border-bottom: 1px dashed var(--light-color);
+            border-bottom: 1px solid var(--light-color);
             padding-bottom: 0.75rem;
             margin-bottom: 1.5rem;
         }
@@ -240,36 +265,55 @@
         }
 
         .entry-section ul {
-            list-style: square;
-            padding-left: 30px;
+            list-style: none; /* Removing default bullets */
+            padding-left: 0;
             margin-bottom: 1.5rem;
         }
+        
+        .entry-section ul li {
+            padding-left: 20px;
+            position: relative;
+            margin-bottom: 8px;
+        }
 
-        /* Image Styling to blend professionally with text */
+        .entry-section ul li::before {
+            content: '▪'; /* Square bullet for options explored */
+            position: absolute;
+            left: 0;
+            color: var(--primary-color);
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+
+        /* Image Styling and Floating */
         .image-container {
             text-align: center;
-            margin-top: 3rem;
             padding: 1rem;
             background-color: var(--light-color);
             border-radius: var(--border-radius-soft);
             overflow: hidden;
+            width: 300px; /* Fixed width for floating */
+            max-width: 100%;
         }
         
-        /* Clearfix to seamlessly blend images with flowing text */
+        .image-float-right {
+            float: right;
+            margin-left: 25px;
+            margin-bottom: 15px;
+        }
+        
         .image-float-left {
             float: left;
-            margin-right: 20px;
-            margin-bottom: 20px;
-            width: 300px;
-            max-width: 100%;
+            margin-right: 25px;
+            margin-bottom: 15px;
         }
 
         .image-container img {
             max-width: 100%;
             height: auto;
-            border-radius: var(--border-radius-soft);
+            border-radius: 8px;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            max-height: 400px;
+            max-height: 300px;
             object-fit: contain;
         }
 
@@ -284,23 +328,31 @@
         /* --- 6. Team & Acknowledgements Section --- */
         .team-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 2rem;
             margin-top: 2rem;
         }
         
+        /* Styling for Team Member/Advisor Boxes */
         .team-member {
             background: var(--white-color);
             padding: 1.5rem;
-            border-left: 5px solid var(--primary-color);
+            border: 1px solid var(--light-color);
             border-radius: var(--border-radius-soft);
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.08);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            transition: transform 0.2s;
+        }
+
+        .team-member:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 10px rgba(0, 0, 0, 0.1);
         }
         
         .team-member strong {
             display: block;
             font-size: 1.2rem;
             color: var(--primary-color);
+            margin-bottom: 5px;
         }
         
         .team-member p {
@@ -338,45 +390,33 @@
 
         /* --- Responsiveness (Media Queries) --- */
         @media (max-width: 900px) {
-            .image-float-left {
+            .image-float-right, .image-float-left {
                 float: none;
                 width: 100%;
-                margin: 0 0 20px 0;
+                margin: 20px 0;
+            }
+            
+            .challenge-list {
+                grid-template-columns: 1fr;
             }
         }
         
         @media (max-width: 768px) {
-            /* Mobile Navigation */
-            .navbar .container {
-                padding: 0.5rem 20px;
-            }
-
             .navbar ul {
                 display: none;
                 flex-direction: column;
                 width: 100%;
-                text-align: center;
-                position: absolute;
                 top: 60px;
-                left: 0;
-                background-color: var(--white-color);
-                box-shadow: 0 4px 5px rgba(0, 0, 0, 0.1);
             }
 
             .navbar ul.active {
                 display: flex;
             }
 
-            .navbar ul li {
-                padding: 8px 0;
-                border-bottom: 1px solid var(--light-color);
-            }
-
             .menu-toggle {
                 display: block;
             }
             
-            /* Hero adjustments */
             .hero-overlay {
                 padding: 1.5rem;
             }
@@ -395,14 +435,6 @@
             
             h3 {
                 font-size: 1.35rem;
-            }
-
-            .engineering-entry {
-                padding: 1.5rem;
-            }
-            
-            .team-grid {
-                grid-template-columns: 1fr;
             }
             
             section {
@@ -430,7 +462,7 @@
     <header id="hero" class="hero">
         <div class="hero-video-container">
             <iframe 
-                src="https://www.youtube.com/embed/yAOU9Yi40EQ?autoplay=1&mute=1&controls=1&loop=1&playlist=yAOU9Yi40EQ" 
+                src="https://www.youtube.com/embed/yAOU9Yi40EQ?autoplay=1&mute=1&controls=0&loop=1&playlist=yAOU9Yi40EQ" 
                 title="Auto-AmbuBag Device Video" 
                 allow="autoplay; encrypted-media; gyroscope; picture-in-picture" 
                 frameborder="0" 
@@ -450,20 +482,20 @@
             <div class="separator"></div>
             
             <h3>The Challenge: Requirements from Indus Hospital</h3>
-            <p>The **<a href="https://indushospital.com.pk" target="_blank">Indus Hospital & Health Network</a>** is the largest health network in Pakistan providing absolutely free healthcare to 6 million people annually. As Pakistan is among the top 5 climate change vulnerable nations, devastated by frequent monsoon floods, the hospital desires a **low-cost, safe, and portable ventilator** to support health needs during disasters and in hard-to-reach rural areas. Key requirements included:</p>
+            <p>The **<a href="https://indushospital.com.pk" target="_blank">Indus Hospital & Health Network</a>** is the largest health network in Pakistan, providing absolutely free healthcare to 6 million people annually. Pakistan is also among the top 5 climate change vulnerable nations, devastated by frequent monsoon floods. To better support health needs during disasters and in hard-to-reach rural areas, the hospital desires a **low-cost, safe, and portable ventilator**. The key requirements were:</p>
             
             <ul class="challenge-list">
                 <li>**Portability:** Light weight and small size.</li>
-                <li>**Reliability:** Can operate on **battery backup for at least 2 hours** to deal with unreliable power.</li>
+                <li>**Reliability:** Can operate on **battery backup for at least 2 hours** to deal with unreliable or damaged power infrastructure.</li>
                 <li>**Transport Ready:** Can be used for transporting patients over unpaved or damaged roads.</li>
                 <li>**Safety:** Features for lung pressure monitoring and emergency stop.</li>
                 <li>**Control:** User controls for breath per minute (BPM), Tidal Volume, and Inhale-Exhale (I/E) ratio with specific ranges.</li>
-                <li>**Target User:** Device must work for adults (no infant or child support in V1).</li>
-                <li>**Cost Constraint:** Keep total cost under **$1000**.</li>
+                <li>**Target User:** Device needs to work only for adults (no infant or child support in V1).</li>
+                <li>**Cost Constraint:** Keep total cost under **$1000** (retail cost is typically over $10,000).</li>
             </ul>
             
             <h3>Our Solution: Building on Open-Source Foundations</h3>
-            <p>To address this challenge, we started with the **<a href="https://emergency-vent.mit.edu/" target="_blank">MIT Emergency Ventilator</a>** open-source project, conceived during the COVID-19 ventilator shortage. We researched projects that built on the MIT design and found the **<a href="https://www.monolithicpower.com/en/mps-open-source-ventilator" target="_blank">MPS design</a>** to be a great fit. Our solution learns from both these projects, modifying them significantly to meet the specific requirements of the Auto-AmbuBag for the Indus Hospital context.</p>
+            <p>To solve this problem, we started with the **<a href="https://emergency-vent.mit.edu/" target="_blank">MIT Emergency Ventilator</a>** open-source project, conceived during the COVID-19 ventilator shortage. We researched several other projects built on the MIT design and found the **<a href="https://www.monolithicpower.com/en/mps-open-source-ventilator" target="_blank">MPS design</a>** to be a good fit. Our solution learns from both these projects and modifies them in several key ways to meet the specific requirements for the Auto-AmbuBag.</p>
         </div>
     </section>
 
@@ -472,25 +504,29 @@
             <h2>Our Design Process: A Quick Overview</h2>
             <div class="separator"></div>
             
-            <p>Starting from the requirements, we held a series of meetings with our advisors to explore hardware and software options. Given the groundwork laid by the MIT & MPS prototypes, we made several foundational decisions quickly:</p>
-            <ul>
-                <li>Using an **Arduino** as the microcontroller.</li>
-                <li>Employing a system of **gears for rotational force** over linear actuators, resulting in a smaller device and better duty cycle.</li>
-                <li>Utilizing an **encoder on the motor** for granular, closed-loop control of respiration phases, a key learning from the <a href="https://emergency-vent.mit.edu/mechanical/motor-selection/" target="_blank">MIT project</a>.</li>
-                <li>Implementing the recommended user interface controls for BPM, Tidal Volume, I/E ratio, and pressure.</li>
+            <p>Starting from the requirements, we held a series of meetings with our Advisors to explore hardware and software options. Given the trail blazed by MIT and MPS prototypes, some decisions were relatively easy to make:</p>
+            <ul class="intro-list">
+                <li>Using an **Arduino** as the microcontroller for the AutoBVM.</li>
+                <li>Using a system of **gears to exert rotational force**, rather than linear force with actuators. This resulted in a smaller device for portability and better duty cycle.</li>
+                <li>Utilizing an **encoder on the motor** to granularly control the speed and range of motion of the respiration phases, a key learning from the <a href="https://emergency-vent.mit.edu/mechanical/motor-selection/" target="_blank">MIT project</a>.</li>
+                <li>Implementing the same user interface recommendation made by the MIT project (user controls for BPM, Tidal Volume, I/E ratio and lung pressure).</li>
             </ul>
-            <p>While leveraging existing state-of-the-art knowledge allowed for rapid progress, the unique Indus Hospital use case necessitated innovation and deviation from the reference designs. As a result, we:</p>
-            <ul>
-                <li>**Reduced the physical size** by finding smaller components (smaller power supply, integrated motor gears), making the **Auto-AmbuBag significantly smaller** than both the MIT and MPS devices.</li>
-                <li>Integrated a **power management and battery charging module** to handle power outages seamlessly.</li>
-                <li>Switched to a **12V ecosystem** to allow charging and operation directly from an ambulance's power outlet during patient transport.</li>
-                <li>**Conserved power** by using a lower-torque **9 N-m motor** (sufficient for the non-COVID patient use case) and selecting a **non-touch LCD display** with aggressive brightness controls, which also eliminated the need for any active cooling.</li>
-                <li>Added an **SpO2 sensor** to monitor the patient’s oxygen saturation, providing critical, real-time data to the clinician on the device screen.</li>
+            <p>By leveraging existing state-of-the-art knowledge, we made rapid progress. However, requirements unique to the Indus Hospital use case necessitated innovation and deviation from the original design. As a result, we:</p>
+            <ul class="intro-list">
+                <li>**Reduced the physical size** by making efficient use of space and finding smaller components (power supply, integrated gears). The Auto-AmbuBag device is significantly smaller than both MIT and MPS devices.</li>
+                <li>Incorporated a **power management and battery charging module** to enable seamless switching over to the battery during power outages.</li>
+                <li>Switched to a **12V ecosystem** to enable charging and operating the device from the power outlet of an ambulance during patient transportation.</li>
+                <li>**Conserved power** by using a **9 N-m motor** (sufficient for this use case, unlike the 15 N-m required for COVID patients), utilizing a **non-touch screen display** with aggressive brightness controls, and eliminating the need for active cooling.</li>
+                <li>Added an **SpO2 sensor** to monitor oxygen saturation, displaying the measurement on the screen for the clinician to modify ventilator settings as needed.</li>
             </ul>
-            <p>These modifications balanced the advantages of open-source knowledge with the need to meet specific, real-world requirements.</p>
+            <p>The modifications above made it possible to take advantage of existing open-source knowledge where possible, while adjusting the design for the unique needs we had to meet.</p>
             
             <div class="engineering-entry">
                 <h4>Entry 1: Power System</h4>
+                <div class="image-container image-float-right">
+                    <img src="images/myimage.jpg" alt="Battery used in the design">
+                    <p>Battery used in the design</p>
+                </div>
                 <div class="entry-section">
                     <strong>Challenge:</strong> 
                     <p>To design a power system that could run continuously for 4+ hours when plugged in and **2+ hours on battery**.</p>
@@ -498,71 +534,67 @@
                 <div class="entry-section">
                     <strong>Options Explored:</strong>
                     <ul>
-                        <li>We considered a 24V motor for efficiency but chose a **12V motor** to avoid introducing a boost converter and a potential point of failure.</li>
-                        <li>We selected a **low-power, 2.4-inch LCD display** with configurable backlight. Aggressive backlight control reduced its consumption to a negligible 0.05Ah.</li>
-                        <li>Under typical configuration used by Indus (15 bpm, Tidal vol of 750), the device drew **less than 1 A of power hourly** while operating the BVM (tested locally using latex balloons to simulate lung resistance).</li>
+                        <li>We avoided a more efficient 24V motor to prevent adding a boost converter and a potential failure point, finding that **12V motors** could manage the required load.</li>
+                        <li>The second most power-hungry component, the display screen, was a low-power, 2.4-inch LCD display. With aggressive backlight control, we reduced its consumption to approximately **0.05Ah, which is negligible**.</li>
+                        <li>In typical configuration (15 bpm, 750 tidal volume), the device drew **less than 1 A of power hourly** (tested locally using latex balloons to simulate lung resistance).</li>
                     </ul>
                 </div>
                 <div class="entry-section">
                     <strong>Decision & Rationale:</strong>
-                    <p>We selected a **4-cell and 6Ah Lithium-Ion battery** that is an off-the-shelf component, easily procured and replaceable in Pakistan. Its modularity allows us to double the capacity to 12Ah within the same design by adding one more battery. We are confident this comfortably **exceeds the 2-hour battery operation time requirement** for the Auto-AmbuBag.</p>
-                    <p>For future iterations, we are considering a different, longer-cycle life battery (8Ah, 4000+ cycles, $18) as a potential cost and reliability improvement.</p>
-                </div>
-                <div class="image-container">
-                    <img src="images/myimage.jpg" alt="Battery used in the design">
-                    <p>Battery used in the design</p>
+                    <p>We picked a **4-cell and 6Ah Lithium-Ion battery** that is an off-the-shelf component, easily procured and replaceable in Pakistan. Its capacity ensures we will **comfortably exceed the 2-hour battery operation time**. The design can be easily upgraded to 12Ah capacity by adding one more battery, increasing weight by 529g and cost by ~$40, while maintaining the size.</p>
+                    <p>For future iterations, we are considering a different battery (8Ah, longer cycle life, half the price) as a potential improvement to experiment with.</p>
                 </div>
             </div>
 
             <div class="engineering-entry">
                 <h4>Entry 2: The Motor - The Heart of the system</h4>
+                <div class="image-container image-float-left">
+                    <img src="https://cdn11.bigcommerce.com/s-x56mtydx1w/images/stencil/original/products/1481/14805/5203-2402-0071__95957.1746576808.jpg?c=1" alt="goBILDA Yellow Jacket motor with encoder">
+                    <p>goBILDA Yellow Jacket motor with encoder</p>
+                </div>
                 <div class="entry-section">
                     <strong>Challenge:</strong> 
-                    <p>To generate **controlled, high torque** to squeeze the AmbuBag while operating under low power and during transport. This requires a high torque, low revolutions per minute (rpm) motor.</p>
+                    <p>To generate **controlled torque** to squeeze the AmbuBag while operating in limited power conditions or during transport. This requires a high torque, low revolutions per minute (rpm) motor.</p>
                 </div>
                 <div class="entry-section">
                     <strong>Options Explored:</strong>
                     <ul>
-                        <li>We struggled first with a **high-rpm brushless DC motor** (4000 rpm) which required a bulky, complex gear system, making the device too large.</li>
-                        <li>We then spent over a month struggling with multiple **low-rpm stepper motors** and various drivers (TMC2208, TB6600, BTS7960). The stepper motors consistently **skipped under load** and were deemed fundamentally unsuitable for this closed-loop control application by the manufacturer.</li>
-                        <li>After returning to DC motors, a **TorqueNADO MAX (5 N-m)** motor was too weak at higher respiration rates.</li>
-                        <li>We finally selected a **goBILDA Yellow Jacket DC motor with 9 N-m torque at 84 rpm speed**. This motor worked perfectly and had a built-in encoder.</li>
+                        <li>We first tried a donated, high-rpm brushless DC motor, but required a complex **100:1 planetary gear** system that made the device too big.</li>
+                        <li>We next switched to low-rpm **stepper motors** and multiple drivers (TMC2208, TB6600, BTS7960). The stepper motors consistently **skipped under load** and were deemed fundamentally unsuitable for this use case by the manufacturer, even with an encoder.</li>
+                        <li>After returning to DC motors, a **TorqueNADO MAX (5 N-m)** motor lacked the necessary torque at higher BPMs.</li>
+                        <li>We finally selected a **goBILDA Yellow Jacket DC motor with 9 N-m torque at 84 rpm speed**. This motor worked perfectly and has built-in encoder support.</li>
                     </ul>
                 </div>
                 <div class="entry-section">
                     <strong>Decision & Rationale:</strong>
-                    <p>We chose the **goBILDA Yellow Jacket DC brushed motor**. This motor met all our needs: **low rpm, high torque, encoder support for closed-loop operation, and low cost ($55)**. Its ecosystem simplified the mechanical design, providing a stable and reliable "heart" for the system after a challenging development phase.</p>
-                </div>
-                <div class="image-container image-float-left">
-                    <img src="https://cdn11.bigcommerce.com/s-x56mtydx1w/images/stencil/original/products/1481/14805/5203-2402-0071__95957.1746576808.jpg?c=1" alt="goBILDA Yellow Jacket motor with encoder">
-                    <p>goBILDA Yellow Jacket motor with encoder</p>
+                    <p>We picked the **goBILDA Yellow Jacket DC brushed motor**. This motor met all our needs: **low rpm, high torque, encoder support for closed-loop operation, and low cost ($55)**. The goBILDA ecosystem also provided easily available mounts and drivers, accelerating our progress and resulting in a robust choice for the system's most critical component.</p>
                 </div>
             </div>
             
             <div class="engineering-entry">
                 <h4>Entry 3: User Interface (UI) & Controls</h4>
+                <div class="image-container image-float-right">
+                    <img src="https://images.squarespace-cdn.com/content/v1/5a620c86010027ed573ce59a/1562100956416-BV329Y4B6ZOHRLEA4D8A/bvm.jpg?format=1500w" alt="Final LCD and encoder interface.">
+                    <p>From a simple potentiometer to the final LCD and encoder interface.</p>
+                </div>
                 <div class="entry-section">
                     <strong>Challenge:</strong> 
-                    <p>To create a simple, intuitive, and **power-efficient** interface for clinicians to view and precisely set ventilation parameters (BPM, Tidal Volume, I/E Ratio, Pressure, SpO2) as specified by our Indus Hospital partners.</p>
+                    <p>To create a simple, intuitive, and **power-efficient** interface for clinicians to view and precisely set ventilation parameters (BPM, Tidal Volume, I/E Ratio, Pressure, User messages) as specified by our Indus Hospital partners.</p>
                 </div>
                 <div class="entry-section">
                     <strong>Options Explored:</strong>
                     <ul>
-                        <li>**Large Touch Screen:** Rejected due to high cost, complexity, and being **too power-hungry** for the mobile battery requirement.</li>
-                        <li>**Multiple Potentiometers:** Rejected due to being imprecise and lacking the necessary digital numerical feedback for clinical use.</li>
-                        <li>**LCD Screen with Rotary Encoder:** This option offered the ideal balance of **low power consumption, cost-effectiveness, and precise digital input** via a menu system.</li>
+                        <li>**Large Touch Screen:** Rejected due to high cost and **excessive power consumption**. We settled for a small 2.4-inch LCD digital display for simple readouts.</li>
+                        <li>**Multiple Potentiometers:** Rejected due to being imprecise and lacking the necessary digital numerical feedback for exact clinical settings.</li>
+                        <li>**LCD Screen with Rotary Encoder:** This option offered a balance of **cost, low power, and precise digital control** within a simple menu-driven system.</li>
                     </ul>
                 </div>
                 <div class="entry-section">
                     <strong>Decision & Rationale:</strong>
-                    <p>We selected a **16x2 LCD screen with a single rotary encoder and push-button**. This interface was the most robust and cost-effective solution. It allowed me to program a simple, menu-driven system where clinicians could **precisely set and confirm each parameter**, directly addressing the hospital's exact usability and power constraints.</p>
-                </div>
-                <div class="image-container">
-                    <img src="https://images.squarespace-cdn.com/content/v1/5a620c86010027ed573ce59a/1562100956416-BV329Y4B6ZOHRLEA4D8A/bvm.jpg?format=1500w" alt="From a simple potentiometer to the final LCD and encoder interface.">
-                    <p>From a simple potentiometer to the final LCD and encoder interface.</p>
+                    <p>We selected a **16x2 LCD screen with a single rotary encoder and push-button**. This interface was the most robust and cost-effective. It allowed me to program a simple menu structure where clinicians could **precisely set and confirm** each parameter digitally, meeting the hospital's exact usability and precision requirements.</p>
                 </div>
             </div>
-            <div style="clear: both;"></div> </div>
+        </div>
     </section>
 
     <section id="impact">
@@ -570,10 +602,10 @@
             <h2>Real-World Application & Pilot with Indus Hospital</h2>
             <div class="separator"></div>
             <h3>Collaboration with <a href="https://indushospital.com.pk" target="_blank">Indus Hospital & Health Network</a></h3>
-            <p>This project has been a deep collaboration with Indus Hospital staff from the start. The current design meets all required specifications and has been **approved by the biomedical department at Indus**. Most of the original requirements are successfully implemented and tested. To ready the device for crucial field testing in Pakistan, the following essential work remains to be completed:</p>
+            <p>This project has been a deep collaboration with Indus Hospital staff from the start. The design meets all required specifications and has been **approved by the biomedical department at Indus**. Most of the original requirements are successfully implemented and tested. To ready the device for field testing at Indus Hospital, the following essential work remains to be completed:</p>
             
             <p><strong>Remaining Work: Pressure Sensor Integration</strong></p>
-            <p>We must integrate a pressure sensor to continuously monitor and control the pressure in the patient's airways. While the device will be field tested initially at lower settings, this is a paramount safety feature. We plan to use the medical-grade **Honeywell pressure sensor** (<a href="https://www.mouser.com/ProductDetail/Honeywell/HSCMRRV001PD2A3" target="_blank">HSCMRRV001PD2A3</a>) for this task.</p>
+            <p>We must integrate a pressure sensor to continuously monitor and control the pressure in the patient's airways. While this device will be field tested at lower settings, this is a paramount safety feature. We will be using the medical-grade **Honeywell pressure sensor** (<a href="https://www.mouser.com/ProductDetail/Honeywell/HSCMRRV001PD2A3" target="_blank">HSCMRRV001PD2A3</a>) for this task.</p>
         </div>
     </section>
 
