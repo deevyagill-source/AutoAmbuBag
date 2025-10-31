@@ -34,6 +34,9 @@
             line-height: 1.8; /* Generous line height for easy reading */
             color: var(--dark-color);
             background-color: var(--white-color);
+            /* NEW: Center the entire body content on the screen */
+            /* max-width: 1400px; /* Optional: Adjust if you want the body wrapper wider than the container */
+            /* margin: 0 auto; */
         }
 
         a {
@@ -52,6 +55,8 @@
             margin: auto;
             overflow: hidden;
             padding: 0 var(--spacing-l);
+            /* NEW: Center align text within containers, which affects non-floated text blocks */
+            /* text-align: center; */ 
         }
 
         /* General Headings Spacing and Style */
@@ -75,6 +80,8 @@
             padding-bottom: 0.5rem;
             margin-top: 2rem; /* Spacing before sub-header */
             margin-bottom: 1rem;
+            /* NEW: Center h3 elements */
+            /* text-align: center; */ 
         }
 
         p {
@@ -106,6 +113,7 @@
             justify-content: space-between;
             align-items: center;
             padding: 1rem var(--spacing-l);
+            text-align: left; /* Keep nav content left/right aligned, override parent center-align */
         }
 
         .navbar .logo {
@@ -197,17 +205,29 @@
         section {
             padding: 5rem 0;
             scroll-padding-top: 80px; 
-        }
-
-        .section-light {
-            background-color: var(--light-color);
+            /* NEW: Ensure sections center their content by centering the container inside */
+            /* text-align: center; /* This might center the text too much globally */
         }
         
-        /* Custom Bullet Points (Squares) for Challenge List */
+        /* NEW: Center the content of sections, but NOT the engineering notebook entries */
+        .container:not(#engineering .container) > * {
+            margin-left: auto;
+            margin-right: auto;
+            text-align: center;
+        }
+        
+        /* NEW: Reset alignment for elements that need to be left-aligned for readability */
+        .container:not(#engineering .container) h3,
+        .container:not(#engineering .container) p,
+        .container:not(#engineering .container) .challenge-list,
+        .container:not(#engineering .container) .flow-list {
+            max-width: 800px; /* Optional: constrain width for better readability */
+            text-align: left; /* Keep the actual text content left aligned */
+        }
+        
+        /* Specific adjustments for challenge list */
         .challenge-list {
-            list-style: none;
-            padding-left: 0;
-            margin-bottom: 2.5rem;
+            text-align: left; /* Ensure text within the list item is left-aligned */
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
             gap: 15px;
@@ -230,7 +250,16 @@
             margin-bottom: 5px;
         }
         
-
+        /* NEW: Force Team and Contact sections to center align everything */
+        #team .container, #contact .container {
+            text-align: center;
+        }
+        
+        #team h3 {
+             text-align: center;
+             max-width: 100%;
+        }
+        
         /* --- 4. Engineering Notebook Section --- */
         .engineering-entry {
             background: var(--white-color);
@@ -239,6 +268,8 @@
             border-radius: var(--border-radius-soft);
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
             overflow: auto;
+            /* CRITICAL: Ensure text is left-aligned within entries */
+            text-align: left; 
         }
 
         .engineering-entry h4 {
@@ -248,6 +279,7 @@
             border-bottom: 1px solid var(--light-color);
             padding-bottom: 0.75rem;
             margin-bottom: 1.5rem;
+            text-align: left; /* Ensure h4 is left-aligned */
         }
 
         .entry-section {
@@ -271,6 +303,7 @@
             flex-direction: column;
             gap: 20px;
             margin-bottom: 2.5rem;
+            text-align: left; /* Ensure text is left-aligned */
         }
         
         .flow-list li {
@@ -287,6 +320,7 @@
             list-style: none; 
             padding-left: 0;
             margin-bottom: 1.5rem;
+            text-align: left; /* Ensure list is left-aligned */
         }
         
         .entry-section ul li {
@@ -351,6 +385,11 @@
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             gap: 2rem;
             margin-top: 2rem;
+            /* NEW: Reset grid alignment to left within its container */
+            margin-left: auto;
+            margin-right: auto;
+            max-width: 900px;
+            text-align: left;
         }
         
         /* Styling for Team Member/Advisor Boxes (Soft Corners) */
@@ -375,7 +414,8 @@
             border: 0;
             height: 1px;
             background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 90, 156, 0.5), rgba(0, 0, 0, 0));
-            margin: 2.5rem 0;
+            margin: 2.5rem auto; /* Center the separator */
+            max-width: 800px;
         }
 
         .contact {
