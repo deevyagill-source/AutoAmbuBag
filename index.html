@@ -335,6 +335,12 @@
             line-height: 1.4;
         }
         
+        /* --- Utility to clear floats --- */
+        .clear-float {
+            clear: both;
+            /* Ensures that the element starts below any preceding floated elements */
+        }
+        
         /* --- 6. Team & Acknowledgements Section --- */
         .team-grid {
             display: grid;
@@ -523,35 +529,35 @@
 
             <p>By leveraging the existing state-of-the-art, we were able to make rapid progress on many aspects of the design and implementation. There were some requirements unique to the Indus Hospital use case that necessitated innovation and/or deviation from the original design. As a result, we:</p>
             <ul class="flow-list">
-                <li>**Reduced the physical size** by making efficient use of the space within the device. The Auto-AmbuBag device is significantly smaller than both MIT and MPS devices.</li>
-                <li>**Incorporated a power management and battery charging module** to enable switching over the battery in case of power outages.</li>
-                <li>**Switched to a 12V ecosystem** to enable charging and operating the device from the power outlet of an ambulance during patient transportation.</li>
-                <li>**Conserved power** by using a **9 N-m motor** (lower power than the 15 N-m minimum for COVID patients), a **non-touch screen display** with aggressive brightness controls, and removing the need for any active cooling.</li>
-                <li>**Added an SpO2 sensor** that comes with the Auto-AmbuBag to monitor Oxygen saturation, displayed on the screen for the clinician.</li>
+                <li><strong>Reduced the physical size</strong> by making efficient use of the space within the device. The Auto-AmbuBag device is significantly smaller than both MIT and MPS devices.</li>
+                <li><strong>Incorporated a power management and battery charging module</strong> to enable switching over the battery in case of power outages.</li>
+                <li><strong>Switched to a 12V ecosystem</strong> to enable charging and operating the device from the power outlet of an ambulance during patient transportation.</li>
+                <li><strong>Conserved power</strong> by using a <strong>9 N-m motor</strong> (lower power than the 15 N-m minimum for COVID patients), a **non-touch screen display** with aggressive brightness controls, and removing the need for any active cooling.</li>
+                <li><strong>Added an SpO2 sensor</strong> that comes with the Auto-AmbuBag to monitor Oxygen saturation, displayed on the screen for the clinician.</li>
             </ul>
             <p>The modifications above made it possible to take advantage of existing open-source knowledge where possible, while adjusting the design for the unique needs we had to meet.</p>
             
             <div class="engineering-entry">
                 <h4>Entry 1: Power System</h4>
                 <div class="image-container image-float-right">
-                    <img src="images/batteryimage.jpg" alt="Lithium-Ion Battery used in the design">
+                    <img src="./images/batteryimage.jpeg" alt="Lithium-Ion Battery used in the design">
                     <p>Battery used in the design</p>
                 </div>
                 <div class="entry-section">
                     <strong>Challenge:</strong> 
-                    <p>To design a power system that could run continuously for 4+ hours when plugged in and **2+ hours on battery**.</p>
+                    <p>To design a power system that could run continuously for 4+ hours when plugged in and <strong>2+ hours on battery</strong>.</p>
                 </div>
                 <div class="entry-section">
                     <strong>Options Explored:</strong>
                     <ul>
-                        <li>Considered a 24V motor for efficiency, but rejected it as it would require a boost converter from 12V input, introducing complexity. We used **12V motors** which efficiently manage the required load.</li>
-                        <li>Selected a low power, 2.4 inch LCD display with configurable backlight. With aggressive backlight control, we reduced the consumption to approximately **0.05Ah**, which is negligible.</li>
-                        <li>For typical Indus configuration (15 bpm, Tidal vol of 750 & I:E of 2), the device drew **less than 1 A of power hourly**. Local testing used latex balloons to simulate lung resistance.</li>
+                        <li>Considered a <strong>24V motor</strong> for efficiency, but rejected it as it would require a boost converter from 12V input, introducing complexity. We used <strong>12V motors</strong> which efficiently manage the required load.</li>
+                        <li>Selected a low power, 2.4 inch LCD display with configurable backlight. With aggressive backlight control, we reduced the consumption to approximately <strong>0.05Ah</strong>, which is negligible.</li>
+                        <li>For typical Indus configuration (15 bpm, Tidal vol of 750 & I:E of 2), the device drew <strong>less than 1 A of power hourly</strong>. Local testing used latex balloons to simulate lung resistance.</li>
                     </ul>
                 </div>
                 <div class="entry-section">
                     <strong>Decision & Rationale:</strong>
-                    <p>We picked an off-the-shelf **4-cell and 6Ah Lithium-Ion battery** that is easily procured and replaceable in Pakistan. We are confident we will comfortably exceed the 2-hour battery operation time. For future iterations, we are considering a different battery (8Ah, 4000+ cycle life, $18) for improved capacity and cost-efficiency.</p>
+                    <p>We picked an off-the-shelf <strong>4-cell and 6Ah Lithium-Ion battery</strong> that is easily procured and replaceable in Pakistan. We are confident we will comfortably exceed the 2-hour battery operation time. For future iterations, we are considering a different battery (8Ah, 4000+ cycle life, $18) for improved capacity and cost-efficiency.</p>
                 </div>
             </div>
 
@@ -563,24 +569,24 @@
                 </div>
                 <div class="entry-section">
                     <strong>Challenge:</strong> 
-                    <p>To generate **controlled torque** to squeeze the AmbuBag while operating in limited power conditions, requiring a **high torque, low revolutions per minute (rpm) motor**.</p>
+                    <p>To generate <strong>controlled torque</strong> to squeeze the AmbuBag while operating in limited power conditions or during transport. This requires a <strong>high torque, low revolutions per minute (rpm) motor</strong>.</p>
                 </div>
                 <div class="entry-section">
                     <strong>Options Explored:</strong>
                     <ul>
-                        <li>Attempted a high-rpm brushless DC motor, but it required a complex **100:1 planetary gear** and additional gearing, making the device too large.</li>
-                        <li>Tested multiple **low-rpm stepper motors** and various drivers (TMC2208, TB6600, BTS7960). The stepper motors consistently **skipped under load** and proved difficult to control, even with an encoder, and were deemed unsuitable.</li>
-                        <li>The TorqueNADO MAX motor (5 N-m torque) lacked the **necessary torque** at higher respiration settings (BPM and tidal volume).</li>
+                        <li>Attempted a high-rpm brushless DC motor, but it required a complex <strong>100:1 planetary gear</strong> and additional gearing, making the device too large.</li>
+                        <li>Tested multiple **low-rpm stepper motors** and various drivers. The stepper motors consistently **skipped under load** and proved difficult to control, and were deemed unsuitable.</li>
+                        <li>The <strong>TorqueNADO MAX motor</strong> (5 N-m torque) lacked the **necessary torque** at higher respiration settings.</li>
                         <li>Selected the **goBILDA Yellow Jacket DC motor with 9 N-m torque at 84 rpm speed**, which performed perfectly across all configuration ranges and includes a built-in encoder.</li>
                     </ul>
                 </div>
                 <div class="entry-section">
                     <strong>Decision & Rationale:</strong>
-                    <p>We picked the **goBILDA Yellow Jacket DC brushed motor**. This motor met all our needs of **low rpm, high torque, encoder support** for closed-loop operation, and **low cost ($55)**. The goBILDA ecosystem provides easily available mounts and drivers, resulting in a reliable and well-supported core component.</p>
+                    <p>We picked the <strong>goBILDA Yellow Jacket DC brushed motor</strong>. This motor met all our needs of **low rpm, high torque, encoder support** for closed-loop operation, and **low cost ($55)**. The goBILDA ecosystem provides easily available mounts and drivers, resulting in a reliable and well-supported core component.</p>
                 </div>
             </div>
             
-            <div class="engineering-entry">
+            <div class="engineering-entry clear-float">
                 <h4>Entry 3: User Interface (UI) & Controls</h4>
                 <div class="image-container image-float-right">
                     <img src="https://images.squarespace-cdn.com/content/v1/5a620c86010027ed573ce59a/1562100956416-BV329Y4B6ZOHRLEA4D8A/bvm.jpg?format=1500w" alt="Final LCD and encoder interface.">
@@ -588,14 +594,14 @@
                 </div>
                 <div class="entry-section">
                     <strong>Challenge:</strong> 
-                    <p>To create a simple, intuitive, and **power-efficient** interface for clinicians to view and precisely set ventilation parameters (BPM, Tidal Volume, I/E Ratio, Pressure, User messages).</p>
+                    <p>To create a simple, intuitive, and <strong>power-efficient</strong> interface for clinicians to view and precisely set ventilation parameters (BPM, Tidal Volume, I/E Ratio, Pressure, User messages).</p>
                 </div>
                 <div class="entry-section">
                     <strong>Options Explored:</strong>
                     <ul>
-                        <li>**Large Touch Screen:** Rejected due to high cost and **power-intensive** nature, which conflicted with the battery-operation requirement.</li>
-                        <li>**Multiple Potentiometers:** Rejected because they were imprecise and lacked the required numerical feedback for clinical parameter setting.</li>
-                        <li>**LCD Screen with Rotary Encoder:** This option offered the best balance of **cost-effectiveness, low power consumption, and precise digital control** through a menu system.</li>
+                        <li><strong>Large Touch Screen:</strong> Rejected due to high cost and **power-intensive** nature, which conflicted with the battery-operation requirement.</li>
+                        <li><strong>Multiple Potentiometers:</strong> Rejected because they were imprecise and lacked the required numerical feedback for clinical parameter setting.</li>
+                        <li><strong>LCD Screen with Rotary Encoder:</strong> This option offered the best balance of **cost-effectiveness, low power consumption, and precise digital control** through a menu system.</li>
                     </ul>
                 </div>
                 <div class="entry-section">
@@ -611,10 +617,10 @@
             <h2>Real-World Application & Pilot with Indus Hospital</h2>
             <div class="separator"></div>
             <h3>Collaboration with Indus Hospital & Health Network</h3>
-            <p>This project has been a deep collaboration with Indus hospital staff from the start. The design meets all required specifications and has been **approved by the biomedical department at Indus**. Most of the original requirements are successfully implemented and tested. To ready the device for field testing at Indus Hospital, the following work remains to be completed:</p>
+            <p>This project has been a deep collaboration with Indus hospital staff from the start. The design meets all required specifications and has been approved by the biomedical department at Indus. Most of the original requirements are successfully implemented and tested. To ready the device for field testing at Indus Hospital, the following work remains to be completed:</p>
             
             <p><strong>Pressure Sensor Integration:</strong></p>
-            <p>We must add a pressure sensor to continuously monitor and control the pressure in the patient airways. While this device will be field tested at lower settings, this is an important safety feature we plan to add to the Auto-AmbuBag first. We will be using the medical-grade **Honeywell pressure sensor** (<a href="https://www.mouser.com/ProductDetail/Honeywell/HSCMRRV001PD2A3" target="_blank">HSCMRRV001PD2A3</a>) for this task.</p>
+            <p>We must add a pressure sensor to continuously monitor and control the pressure in the patient airways. While this device will be field tested at lower settings, this is an important safety feature we plan to add to the Auto-AmbuBag first. We will be using the medical-grade <strong>Honeywell pressure sensor</strong> (<a href="https://www.mouser.com/ProductDetail/Honeywell/HSCMRRV001PD2A3" target="_blank">HSCMRRV001PD2A3</a>) for this task.</p>
         </div>
     </section>
 
